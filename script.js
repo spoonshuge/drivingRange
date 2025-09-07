@@ -1,166 +1,68 @@
-"use strict";
+// Timezone-safe open/closed badge for America/New_York
+const HOURS = {
+  0: { open: "08:00", close: "19:00" }, // Sun
+  1: { open: "08:00", close: "19:00" }, // Mon
+  2: { open: "08:00", close: "19:00" }, // Tue
+  3: { open: "08:00", close: "19:00" }, // Wed
+  4: { open: "08:00", close: "19:00" }, // Thu
+  5: { open: "08:00", close: "19:00" }, // Fri
+  6: { open: "07:00", close: "19:00" }  // Sat
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-  const navToggle = document.querySelector(".nav-toggle");
-  const siteNav = document.getElementById("site-nav");
-  const openStatusEl = document.getElementById("open-status");
-  const yearEl = document.getElementById("year");
+function nowInNY() {
+  // Build a Date from NY parts to avoid local timezone drift
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    hour12: false,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  }).formatToParts(new Date())
+    .reduce((acc, p) => (acc[p.type] = p.value, acc), {});
+  // YYYY-MM-DDTHH:mm:ss for local Date constructor
+  return new Date(`${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`);
+}
 
-  // Year in footer
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
-  }
+function isOpen(dateNY = nowInNY()) {
+  const day = dateNY.getDay();
+  const { open, close } = HOURS[day];
+  const [oh, om] = open.split(':').map(Number);
+  const [ch, cm] = close.split(':').map(Number);
+  const openMins  = oh * 60 + om;
+  const closeMins = ch * 60 + cm;
+  const mins = dateNY.getHours() * 60 + dateNY.getMinutes();
+  return mins >= openMins && mins < closeMins;
+}
 
-  // Mobile nav toggle
-  if (navToggle && siteNav) {
-    const closeNav = () => {
-      siteNav.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-    };
-    const openNav = () => {
-      siteNav.classList.add("open");
-      navToggle.setAttribute("aria-expanded", "true");
-    };
-    const toggleNav = () => {
-      const isOpen = siteNav.classList.contains("open");
-      isOpen ? closeNav() : openNav();
-    };
+function setYear() {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
 
-    navToggle.addEventListener("click", toggleNav);
-
-    // Close when clicking a nav link
-    siteNav.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target && target.tagName === "A") {
-        closeNav();
-      }
-    });
-
-    // Click outside to close
-    document.addEventListener("click", (e) => {
-      if (!siteNav.classList.contains("open")) return;
-      const target = e.target;
-      if (!(target instanceof Node)) return;
-      if (!siteNav.contains(target) && !navToggle.contains(target)) {
-        closeNav();
-      }
-    });
-
-    // ESC to close
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeNav();
-        navToggle.blur();
-      }
-    });
-
-    // Ensure state on resize
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 900) {
-        siteNav.classList.remove("open");
-        navToggle.setAttribute("aria-expanded", "false");
-      }
-    });
-  }
-
-  // Smooth scroll for on-page anchors + close nav
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const href = a.getAttribute("href");
-      if (!href || href === "#") return;
-      const el = document.querySelector(href);
-      if (!el) return;
-      e.preventDefault();
-      el.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
-      if (siteNav) siteNav.classList.remove("open");
-      if (navToggle) navToggle.setAttribute("aria-expanded", "false");
-      history.pushState(null, "", href);
-    });
+function wireSmoothAnchors() {
+  const preferReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const el = document.querySelector(a.getAttribute('href'));
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: preferReduced ? 'auto' : 'smooth', block: 'start' });
   });
+}
 
-  // Hours/open status (America/New_York)
-  try {
-    const tz = "America/New_York";
+function updateBadge() {
+  const badge = document.querySelector('[data-open-badge]');
+  if (!badge) return;
+  const open = isOpen();
+  badge.textContent = open ? 'Open now' : 'Closed now';
+  badge.setAttribute('data-status', open ? 'open' : 'closed');
+  badge.setAttribute('aria-label', open ? 'Range is currently open' : 'Range is currently closed');
+}
 
-    // Minutes since midnight helpers
-    const HOURS = [
-      { open: 8 * 60, close: 19 * 60 }, // Sunday
-      { open: 8 * 60, close: 19 * 60 }, // Monday
-      { open: 8 * 60, close: 19 * 60 }, // Tuesday
-      { open: 8 * 60, close: 19 * 60 }, // Wednesday
-      { open: 8 * 60, close: 19 * 60 }, // Thursday
-      { open: 8 * 60, close: 19 * 60 }, // Friday
-      { open: 7 * 60, close: 19 * 60 }, // Saturday
-    ];
-    const weekdayShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const weekdayLong = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    const getNowInTZ = (tz) => {
-      const now = new Date();
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz,
-        hour12: false,
-        weekday: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-      }).formatToParts(now);
-      const w = parts.find((p) => p.type === "weekday")?.value || "Sun";
-      const h = parseInt(parts.find((p) => p.type === "hour")?.value || "0", 10);
-      const m = parseInt(parts.find((p) => p.type === "minute")?.value || "0", 10);
-      const dayIndex = Math.max(0, weekdayShort.indexOf(w));
-      return { dayIndex, minutes: h * 60 + m };
-    };
-
-    const formatTime12h = (mins) => {
-      let h = Math.floor(mins / 60);
-      const m = mins % 60;
-      const suffix = h >= 12 ? "PM" : "AM";
-      h = h % 12;
-      if (h === 0) h = 12;
-      return m ? `${h}:${String(m).padStart(2, "0")} ${suffix}` : `${h} ${suffix}`;
-    };
-
-    const { dayIndex, minutes } = getNowInTZ(tz);
-
-    // Highlight today's hours row (list is Sunday-first)
-    const rows = document.querySelectorAll(".hours-list li");
-    if (rows[dayIndex]) rows[dayIndex].classList.add("today");
-
-    const today = HOURS[dayIndex];
-    const isOpenNow = minutes >= today.open && minutes < today.close;
-
-    const nextOpenInfo = () => {
-      if (minutes < today.open) {
-        return { dayIndex, time: today.open, label: "today" };
-      }
-      for (let i = 1; i <= 7; i++) {
-        const di = (dayIndex + i) % 7;
-        const open = HOURS[di].open;
-        if (open != null) {
-          return { dayIndex: di, time: open, label: i === 1 ? "tomorrow" : weekdayLong[di] };
-        }
-      }
-      return { dayIndex, time: today.open, label: "soon" };
-    };
-
-    if (openStatusEl) {
-      if (isOpenNow) {
-        openStatusEl.textContent = `Open now • Until ${formatTime12h(today.close)}`;
-        openStatusEl.classList.remove("closed");
-        openStatusEl.classList.add("open");
-      } else {
-        const next = nextOpenInfo();
-        const dayLabel =
-          next.label === "today" ? "" : next.label === "tomorrow" ? " tomorrow" : ` ${weekdayLong[next.dayIndex]}`;
-        openStatusEl.textContent = `Closed now • Opens${dayLabel} at ${formatTime12h(next.time)}`;
-        openStatusEl.classList.remove("open");
-        openStatusEl.classList.add("closed");
-      }
-    }
-  } catch {
-    if (openStatusEl) {
-      openStatusEl.textContent = "See hours below";
-    }
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  setYear();
+  wireSmoothAnchors();
+  updateBadge();
+  // Re-check every 5 minutes
+  setInterval(updateBadge, 5 * 60 * 1000);
 });

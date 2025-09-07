@@ -1,179 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cascade Road Driving Range | Atlanta, GA</title>
-  <meta name="description" content="Cascade Road Driving Range in Atlanta, GA. Open daily. 3520 Cascade Rd, Atlanta, GA 30331." />
-  <meta name="theme-color" content="#155e2f" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; base-uri 'none'; form-action 'none'" />
-  <link rel="canonical" href="https://spoonshuge.github.io/drivingRange/" />
-  <link rel="preconnect" href="https://www.google.com" crossorigin />
-  <link rel="preconnect" href="https://maps.google.com" crossorigin />
 
-  <!-- SEO / Social -->
+  <title>Cascade Road Driving Range — Atlanta, GA</title>
+  <meta name="description" content="Small, friendly golf driving range on Cascade Road in Atlanta. Covered bays, real-grass field, and straightforward pricing. Open daily." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://spoonshuge.github.io/drivingRange/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Cascade Road Driving Range — Atlanta, GA" />
+  <meta property="og:description" content="Small, friendly golf driving range on Cascade Road in Atlanta. Covered bays, real-grass field, and straightforward pricing. Open daily." />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://spoonshuge.github.io/drivingRange/" />
   <meta property="og:image" content="https://spoonshuge.github.io/drivingRange/og-image.png" />
-  <meta property="og:site_name" content="Cascade Road Driving Range" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cascade Road Driving Range | Atlanta, GA" />
-  <meta name="twitter:description" content="Open daily in Atlanta, GA. 3520 Cascade Rd, Atlanta, GA 30331." />
   <meta name="twitter:image" content="https://spoonshuge.github.io/drivingRange/og-image.png" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Cascade Road Driving Range" />
-  <meta property="og:description" content="Open daily in Atlanta, GA. 3520 Cascade Rd, Atlanta, GA 30331." />
-  <meta property="og:type" content="website" />
+  <!-- App icons (optional: add files when ready) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Favicon (inline SVG) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-label='Golf' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23ffffff' stroke='%23155e2f' stroke-width='8'/%3E%3Ccircle cx='35' cy='40' r='4' fill='%23d9d9d9'/%3E%3Ccircle cx='50' cy='37' r='4' fill='%23d9d9d9'/%3E%3Ccircle cx='44' cy='50' r='4' fill='%23d9d9d9'/%3E%3Ccircle cx='58' cy='48' r='4' fill='%23d9d9d9'/%3E%3Ccircle cx='40' cy='62' r='4' fill='%23d9d9d9'/%3E%3C/svg%3E" />
+  <!-- Security: hardened CSP -->
+  <!-- Remove 'unsafe-inline' for scripts (we only use external script.js) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    img-src 'self' data: https:;
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    connect-src 'self';
+    frame-src https://www.google.com https://maps.google.com;
+    object-src 'none';
+    base-uri 'none';
+    form-action 'none';
+    frame-ancestors 'none';
+    upgrade-insecure-requests
+  ">
 
-  <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    "name": "Cascade Road Driving Range",
-    "url": "https://spoonshuge.github.io/drivingRange/",
-    "image": "https://spoonshuge.github.io/drivingRange/og-image.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "3520 Cascade Rd",
-      "addressLocality": "Atlanta",
-      "addressRegion": "GA",
-      "postalCode": "30331",
-      "addressCountry": "US"
-    },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "19:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:00", "closes": "19:00" }
-    ]
-  }
-  </script>
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#0f5132" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="Cascade Road Driving Range Home">
-        <span class="brand-logo" aria-hidden="true">⛳</span>
-        <span class="brand-text">Cascade Road Driving Range</span>
-      </a>
-
-      <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-
-      <nav id="site-nav" class="site-nav" aria-label="Primary">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#hours">Hours & Location</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+  <header class="site-header" role="banner">
+    <div class="wrap">
+      <h1 class="brand">Cascade Road Driving Range</h1>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#hours" aria-current="page">Hours</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <!-- Hero -->
-    <section id="home" class="section hero">
-      <div class="container hero-inner">
-        <h1>Cascade Road Driving Range</h1>
-        <p class="tagline">Open daily in Southwest Atlanta</p>
-        <div class="cta">
-          <a class="btn primary" href="#hours">View Hours & Location</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=3520+Cascade+Rd,+Atlanta,+GA+30331">Get Directions</a>
-        </div>
+  <main id="content" class="site-main" role="main">
+    <section class="hero">
+      <div class="wrap">
+        <p class="badge" data-open-badge aria-live="polite">Loading status…</p>
+        <h2>Small range. Big vibes.</h2>
+        <p>Six covered bays and a real-grass field on Cascade Road. Beginners welcome. Bring a friend.</p>
+        <a class="btn" href="#pricing">See pricing</a>
       </div>
     </section>
 
-    <!-- Hours & Location -->
-    <section id="hours" class="section hours">
-      <div class="container">
-        <header class="section-header">
-          <h2>Hours & Location</h2>
-          <p id="open-status" class="badge">Checking status…</p>
-        </header>
+    <section id="hours" class="card">
+      <h3>Hours (Atlanta / America/New_York)</h3>
+      <p>Sun–Fri: 8:00am–7:00pm · Sat: 7:00am–7:00pm</p>
+      <p class="fine">Weather and daylight can affect closing times. Call ahead on rainy days.</p>
+    </section>
 
-        <div class="grid two">
-          <div>
-            <h3>Address</h3>
-            <p>
-              3520 Cascade Rd<br />
-              Atlanta, GA 30331
-            </p>
-            <p class="buttons">
-              <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=3520+Cascade+Rd,+Atlanta,+GA+30331">Directions</a>
-              <a class="btn outline" href="#contact">Map</a>
-            </p>
-          </div>
+    <section id="pricing" class="card">
+      <h3>Pricing</h3>
+      <ul class="prices">
+        <li><strong>Small bucket</strong> — $7</li>
+        <li><strong>Large bucket</strong> — $12</li>
+        <li><strong>Club rental</strong> — $3</li>
+      </ul>
+      <p class="fine">Cash and cards accepted.</p>
+    </section>
 
-          <div>
-            <h3>Hours</h3>
-            <ul class="hours-list" aria-label="Weekly hours">
-              <li><span>Sunday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Monday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Tuesday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Wednesday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Thursday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Friday</span><span>8 AM – 7 PM</span></li>
-              <li><span>Saturday</span><span>7 AM – 7 PM</span></li>
-            </ul>
-            <p class="note">Last ball sold before closing.</p>
-          </div>
-        </div>
+    <section id="location" class="card">
+      <h3>Location</h3>
+      <address>
+        Cascade Road Driving Range<br>
+        Atlanta, Georgia
+      </address>
+      <div class="map">
+        <iframe
+          title="Map to Cascade Road Driving Range"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          src="https://www.google.com/maps?q=Cascade%20Road%20Atlanta&output=embed">
+        </iframe>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section about">
-      <div class="container">
-        <h2>About</h2>
-        <p>
-          Practice your swing at our convenient Cascade Road location. We offer a friendly environment for all skill levels. Bring your clubs, relax, and enjoy improving your game.
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact / Map -->
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2>Contact & Map</h2>
-        <div class="grid two align-start">
-          <div>
-            <p>
-              Find us at:<br />
-              <strong>3520 Cascade Rd, Atlanta, GA 30331</strong>
-            </p>
-            <p>
-              For questions, please visit us during business hours.
-            </p>
-            <p class="buttons">
-              <a class="btn primary" target="_blank" rel="noopener" href="https://maps.google.com/?q=3520+Cascade+Rd,+Atlanta,+GA+30331">Open in Google Maps</a>
-            </p>
-          </div>
-          <div class="map-wrap" aria-label="Map showing the driving range location">
-            <iframe
-              title="Google Map - Cascade Road Driving Range"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=3520%20Cascade%20Rd,%20Atlanta,%20GA%2030331&output=embed">
-            </iframe>
-          </div>
-        </div>
-      </div>
+    <section id="contact" class="card">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:info@cascade-range.example">info@cascade-range.example</a></p>
+      <p>Phone: <a href="tel:+14045551234">(404) 555-1234</a></p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Cascade Road Driving Range • 3520 Cascade Rd, Atlanta, GA 30331</p>
-      <p><a href="#home">Back to top</a></p>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <small>© <span id="year"></span> Cascade Road Driving Range. All rights reserved.</small>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="./script.js" defer></script>
+
+  <!-- Simple JSON-LD (LocalBusiness) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SportsActivityLocation",
+    "name":"Cascade Road Driving Range",
+    "url":"https://spoonshuge.github.io/drivingRange/",
+    "address":{"@type":"PostalAddress","addressLocality":"Atlanta","addressRegion":"GA","addressCountry":"US"},
+    "openingHoursSpecification":[
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"08:00","closes":"19:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"19:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"07:00","closes":"19:00"}
+    ]
+  }
+  </script>
 </body>
 </html>
