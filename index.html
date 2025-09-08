@@ -41,8 +41,9 @@
   <section class="hero">
     <div class="container">
       <div class="status-badge" data-open-badge>Loading status...</div>
-      <h1>Atlanta's Home Town Feel Driving Range</h1>
+      <h1>Atlanta's Home Town Driving Range</h1>
       <p>Over 30 years serving golfers of all skill levels. Perfect your swing with 6 covered mats, 15 grass bays, and brand new balls.</p>
+      <p> Give us a call: <a href="tel:470-225-1313" style="color: var(--white); text-decoration: underline;">470-225-1313</a></p>
     </div>
   </section>
 
@@ -154,11 +155,16 @@
         </div>
       </div>
       
-      <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--white); border-radius: 12px;">
-        <p style="font-style: italic; color: var(--gray); font-size: 1.1rem;">
-          <strong>Hours:</strong> Sunday-Friday 8:00am-7:00pm • Saturday 7:00am-7:00pm
+      <div style="text-align: center; margin-top: 3rem; padding: 2.5rem; background: var(--primary); color: var(--white); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <h3 style="margin: 0 0 1rem 0; font-size: 1.5rem; color: var(--white);">Hours of Operation</h3>
+        <p style="font-size: 1.3rem; margin: 0.5rem 0; font-weight: 600;">
+          Sunday-Friday: 8:00am-7:00pm<br>
+          Saturday: 7:00am-7:00pm
         </p>
-        <p style="font-style: italic; color: var(--gray); margin-top: 0.5rem;">
+        <p style="margin-top: 1.5rem; font-size: 1.2rem; font-weight: 600;">
+          📞 Call Us: <a href="tel:470-225-1313" style="color: var(--white); text-decoration: underline;">470-225-1313</a>
+        </p>
+        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.9;">
           Weather and daylight can affect closing times. Call ahead on rainy days.
         </p>
       </div>
@@ -170,17 +176,27 @@
     <div class="container">
       <h2>Visit Us Today</h2>
       <div class="contact-details">
-        <div class="map-container" style="width: 100%; max-width: 600px; margin: 0 auto;">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.8!2d-84.4!3d33.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQyJzAwLjAiTiA4NMKwMjQnMDAuMCJX!5e0!3m2!1sen!2sus!4v1234567890!5m2!1sen!2sus&q=3520+Cascade+Road+Atlanta+GA+30331"
-            width="100%" 
-            height="300" 
-            style="border:0; border-radius: 12px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Cascade Driving Range Location">
-          </iframe>
+        <div class="map-container" style="width: 100%; max-width: 600px; margin: 0 auto; position: relative;">
+          <a href="https://maps.google.com/?q=3520+Cascade+Rd,+Atlanta,+GA+30331" 
+             target="_blank" 
+             style="display: block; position: relative; text-decoration: none;"
+             aria-label="Open location in Google Maps">
+            <iframe 
+              src="https://maps.google.com/maps?q=3520+Cascade+Road,+Atlanta,+GA+30331&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%" 
+              height="300" 
+              style="border:0; border-radius: 12px; pointer-events: none;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Cascade Driving Range Location">
+            </iframe>
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: transparent; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <div style="background: rgba(0,0,0,0.7); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; opacity: 0; transition: opacity 0.3s;" class="map-overlay">
+                📍 Tap to open in Maps
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <p style="margin-top: 2rem; font-size: 1.1rem;">
