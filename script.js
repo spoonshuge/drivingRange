@@ -1,12 +1,12 @@
 // Timezone-safe open/closed badge for America/New_York
 const HOURS = {
-  0: { open: "08:00", close: "19:00" }, // Sun
-  1: { open: "08:00", close: "19:00" }, // Mon
-  2: { open: "08:00", close: "19:00" }, // Tue
-  3: { open: "08:00", close: "19:00" }, // Wed
-  4: { open: "08:00", close: "19:00" }, // Thu
-  5: { open: "08:00", close: "19:00" }, // Fri
-  6: { open: "07:00", close: "19:00" }  // Sat
+  0: { open: "08:00", close: "21:00" }, // Sun
+  1: { open: "08:00", close: "21:00" }, // Mon
+  2: { open: "08:00", close: "21:00" }, // Tue
+  3: { open: "08:00", close: "21:00" }, // Wed
+  4: { open: "08:00", close: "21:00" }, // Thu
+  5: { open: "08:00", close: "21:00" }, // Fri
+  6: { open: "07:00", close: "21:00" }  // Sat
 };
 
 function nowInNY() {
